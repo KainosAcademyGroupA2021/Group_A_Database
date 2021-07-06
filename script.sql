@@ -4,8 +4,8 @@ CapabilityName varchar(255),
 JobFamilyID int,
 CapabilityLeadID int,
 PRIMARY KEY (CapabilityID),
-FOREIGN KEY (JobFamilyID) REFERENCES JobFamily(JobFamilyID)
-FOREIGN KEY (CapabilityLeadID) REFERENCES CapabilityLead(CapabilityLeadID)
+FOREIGN KEY (JobFamilyID) REFERENCES JobFamily(JobFamilyID),
+FOREIGN KEY (CapabilityLeadID) REFERENCES CapabilityLeads(CapabilityLeadID)
 );
 
 CREATE TABLE Role (
@@ -15,7 +15,7 @@ RoleSpec varchar(255),
 CapabilityID int, 
 BandID int,
 PRIMARY KEY (RoleID),
-FOREIGN KEY (CapabilityID) REFERENCES Capability(CapabilityID)
+FOREIGN KEY (CapabilityID) REFERENCES Capability(CapabilityID),
 FOREIGN KEY (BandID) REFERENCES Band(BandID)
 );
 
@@ -24,12 +24,11 @@ BandID int NOT NULL AUTO_INCREMENT,
 BandName varchar(255),
 BandLevel int,
 Responsibilities varchar(255),
-TrainingID,
-CompetenciesID,
+TrainingID int,
+CompetenciesID int,
 PRIMARY KEY (BandID),
-FOREIGN KEY (CompetenciesID) REFERENCES Competencies(CompetenciesID)
+FOREIGN KEY (CompetenciesID) REFERENCES Competencies(CompetenciesID),
 FOREIGN KEY (TrainingID) REFERENCES Training(TrainingID)
-
 );
 
 CREATE TABLE JobFamily (
@@ -67,3 +66,17 @@ CapabilityLeadMessage varchar(255),
 PRIMARY KEY (CapabilityLeadID)
 );
 
+
+INSERT INTO JobFamily (JobFamilyID, JobFamilyName) VALUES ('Engineering Strategy and Planning');
+
+INSERT INTO CapabilityLeads (CapabilityLeadName, CapabilityLeadPhoto, CapabilityLeadMessage) VALUES ('Aislinn McBride', 'url', ‘'apability Lead message');
+
+INSERT INTO Capability (CapabilityName, JobFamilyID, CapabilityLeadID) VALUES ('Engineering', 1, 1);
+
+INSERT INTO Competencies (CompetenciesName) VALUES ('Communication & influence, Personal performance, Working with others, Setting direction development & accountability, Supporting & delivering strategy, Commerciality & risk');
+
+INSERT INTO Training (TrainingName, TrainingType, TrainingLink) VALUES ('Training name', 'Professional skills', 'training link');
+
+INSERT INTO Band (BandName, BandLevel, Responsibilities, TrainingID, CompetenciesID) VALUES ('Trainee', 7,  'responsibilities', 1, 1);
+
+INSERT INTO Role (RoleName, RoleSpec, CapabilityID, BandID) VALUES ('Software Engineer', 'link to spec', 1, 1);
