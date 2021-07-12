@@ -50,6 +50,7 @@ CREATE TABLE `Role` (
     `RoleSpec` varchar(255) DEFAULT NULL,
     `BandID` int DEFAULT NULL,
     `JobFamilyID` int NOT NULL,
+    `RoleSpecSummary` varchar(255),
     PRIMARY KEY (`RoleID`),
     KEY `BandID` (`BandID`),
     KEY `fk_jobfamily_id` (`JobFamilyID`),
